@@ -18,22 +18,23 @@
 
 (defn get_input_files_in_directory
   [dir regex]
-  (filter #(matches_file_and_regex? regex %) (file-seq dir)))
+  (filter #(matches_file_and_regex? regex %) (file-seq (io/file dir))))
 
 (defn get_input_files
   [dirs]
   (let [files_in_directories (map #(get_input_files_in_directory % file_regex) dirs)]
-    (flatten files_in_directories)))
+    (into #{} (flatten files_in_directories))))
 
 (defn process_files
   [files]
+;;  (for [f files] (println f))
   )
 
 (defn process_input_dir
   [indir outdir]
   (let [
-        dirs (get_input_directories indir)
-        files (get_input_files dirs)
+        ;; dirs (get_input_directories indir)
+        files (get_input_files [indir])
         ]
     (process_files files)
     )
