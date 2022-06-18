@@ -1,5 +1,6 @@
 (ns add-lang.process
-  (:require [clojure.java.io :as io])
+  (:require [clojure.java.io :as io]
+            [add-lang.process-files])
   )
 
 (def file_regex #".+\.ifo$")
@@ -25,10 +26,6 @@
   (let [files_in_directories (map #(get_input_files_in_directory % file_regex) dirs)]
     (into #{} (flatten files_in_directories))))
 
-(defn process_files
-  [files]
-;;  (for [f files] (println f))
-  )
 
 (defn process_input_dir
   [indir outdir]
@@ -36,6 +33,6 @@
         ;; dirs (get_input_directories indir)
         files (get_input_files [indir])
         ]
-    (process_files files)
+    (add-lang.process-files/process_files files indir outdir)
     )
   )
