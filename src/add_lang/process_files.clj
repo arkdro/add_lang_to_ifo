@@ -4,6 +4,7 @@
 
 (def abbrev_regex #"(?im)^bookname=Abbrev$")
 (def languages_regex #"(?i)^(.*)_\w+\.ifo$")
+(def languages_regex_whole_name #"(?i)^(.*)\.ifo$")
 
 (defn write_output_file
   [new_content file indir outdir]
@@ -12,7 +13,9 @@
 (defn get_languages
   [file]
   (let [filename (.getName file)]
-    (second (re-find languages_regex filename))))
+    (if-let [short_part (second (re-find languages_regex filename))]
+      short_part
+      (second (re-find languages_regex_whole_name filename)))))
 
 (defn change_content
   [file content]
