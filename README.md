@@ -1,10 +1,38 @@
-# add_lang
+# `add_lang`
 
-find file by text mask (e.g. `*.txt`), check its content, change the content.
+Some `ifo` files don't have an appropriate bookname. The bookname only contains
+the word `abbrev`.
+This is not enough, because dictionary clients won't show useful info for these files
+in this case.
+The bookname should have a better content, something like `abbrev En-En`.
+
+This program does the following:
+1. finds files by text mask (`*.ifo`)
+2. checks the content of the file (specifically - the bookname)
+3. changes the bookname by adding a language or the whole filename to it
+4. writes the new content to a new file (`*.ifo.new`).
+
+E.g.:
+
+the file `AllEnEn_abrv.ifo` has the following content:
+```
+wordcount=19
+idxfilesize=1234
+bookname=Abbrev
+date=2022.01.27
+```
+
+After the change, the new file `AllEnEn_abrv.ifo.new` has the following content:
+```
+wordcount=19
+idxfilesize=1234
+bookname=Abbrev AllEnEn
+date=2022.01.27
+```
 
 ## Usage
 
-FIXME
+`lein run -- -i <INPUT_DIRECTORY>`
 
 ## License
 
