@@ -5,10 +5,21 @@
 (def abbrev_regex #"(?im)^bookname=Abbrev$")
 (def languages_regex #"(?i)^(.*)_\w+\.ifo$")
 (def languages_regex_whole_name #"(?i)^(.*)\.ifo$")
+(def filename_addition ".new")
+
+(defn build_new_name
+  [file]
+  (let [fullname (.getPath file)]
+    (str fullname filename_addition)))
+
+(defn write_new_content_to_file
+  [filename content]
+  (spit filename content))
 
 (defn write_output_file
-  [new_content file indir outdir]
-  )
+  [content file]
+  (let [new_name (build_new_name file)]
+    (write_new_content_to_file new_name content)))
 
 (defn get_languages
   [file]
