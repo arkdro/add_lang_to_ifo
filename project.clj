@@ -5,4 +5,5 @@
             :url "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies [[org.clojure/clojure "1.10.1"]
                  [org.clojure/tools.cli "0.3.5"]]
+  :main ^:skip-aot add-lang.core
   :repl-options {:init-ns add-lang.core})
