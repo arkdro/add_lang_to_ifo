@@ -26,13 +26,7 @@
   (let [files_in_directories (map #(get_input_files_in_directory % file_regex) dirs)]
     (into #{} (flatten files_in_directories))))
 
-
 (defn process_input_dir
   [indir outdir]
-  (let [
-        ;; dirs (get_input_directories indir)
-        files (get_input_files [indir])
-        ]
-    (add-lang.process-files/process_files files indir outdir)
-    )
-  )
+  (let [files (get_input_files [indir])]
+    (add-lang.process-files/process_files files)))

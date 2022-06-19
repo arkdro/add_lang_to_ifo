@@ -45,11 +45,11 @@
       content)))
 
 (defn process_one_file
-  [file indir outdir]
+  [file]
   (let [new_content (get_new_content file)]
-    (write_output_file new_content file indir outdir)))
+    (write_output_file new_content file)))
 
 (defn process_files
-  [files indir outdir]
+  [files]
   (for [file files]
-    (process_one_file file indir outdir)))
+    (process_one_file file)))
